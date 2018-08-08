@@ -30,14 +30,5 @@ public class MemberFindIdController {
 		
 		return "member/findMyId";
 	}
-	
-	
-	
-	//////////////////////////////////////
-	@RequestMapping("/member/login")
-	public String loginPage() {
-		
-		return "member/login";
-	}
-	
+
 }
