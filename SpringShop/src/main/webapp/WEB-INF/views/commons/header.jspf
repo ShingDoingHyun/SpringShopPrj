@@ -26,7 +26,7 @@
         
         <li><a href="/member/join.jsp">My Account</a></li>
         <li><a href="/op/product/productList">The Store</a></li>
-        <li><a href="/contact.jsp">Contact</a></li>
+        <li><a href="<c:url value='/contact'/>">Contact</a></li>
       </ul>
     </div>
     <!-- End Navigation -->
