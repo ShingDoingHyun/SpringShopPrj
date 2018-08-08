@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Header -->
   <div id="header">
-    <h1 id="logo"><a href="/">shoparound</a></h1>
+    <h1 id="logo"><a href="/op">shoparound</a></h1>
     <!-- Cart -->
     <div id="cart"> <a href="/getCart.cart" class="cart-link">Your Shopping Cart</a>
       <div class="cl">&nbsp;</div>
@@ -19,7 +19,7 @@
         <li><a href="/op" class="active">home</a></li>
         
         <% if(sessionID == null){  %>
-        <li><a href="http://localhost/member/login.jsp">Login</a></li>
+        <li><a href="<c:url value='/member/login'/>">Login</a></li>
 		<% }else { %>        
         <li><a href="/member/logout.jsp">Logout</a></li>
         <% } %>
