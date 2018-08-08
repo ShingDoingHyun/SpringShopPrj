@@ -19,7 +19,7 @@
         <li><a href="/op" class="active">home</a></li>
         
         <% if(sessionID == null){  %>
-        <li><a href="http://localhost/member/login.jsp">Login</a></li>
+        <li><a href="<c:url value='/member/login'/>">Login</a></li>
 		<% }else { %>        
         <li><a href="/member/logout.jsp">Logout</a></li>
         <% } %>
