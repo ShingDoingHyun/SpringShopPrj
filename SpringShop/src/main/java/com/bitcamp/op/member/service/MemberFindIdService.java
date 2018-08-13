@@ -3,18 +3,18 @@ package com.bitcamp.op.member.service;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.bitcamp.op.member.dao.MemberDaoImterface;
+import com.bitcamp.op.member.dao.MemberDaoInterface;
 import com.bitcamp.op.member.model.MemberVO;
 
 public class MemberFindIdService {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	private MemberDaoImterface memberDao;
+	private MemberDaoInterface memberDao;
 	
 	public String findIdResultMsg(String email) {
 		
-		memberDao = sqlSessionTemplate.getMapper(MemberDaoImterface.class);
+		memberDao = sqlSessionTemplate.getMapper(MemberDaoInterface.class);
 		MemberVO memberVO = memberDao.findIdByEmail(email);
 		
 		String result = "";

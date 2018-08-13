@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import com.bitcamp.op.member.dao.MemberDaoImterface;
+import com.bitcamp.op.member.dao.MemberDaoInterface;
 import com.bitcamp.op.member.model.MemberVO;
 
 public class MemberFindPwService {
@@ -16,11 +16,11 @@ public class MemberFindPwService {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	private MemberDaoImterface memberDao;
+	private MemberDaoInterface memberDao;
 	
 	public String findPwResultMsg(String id, String email) {
 		
-		memberDao = sqlSessionTemplate.getMapper(MemberDaoImterface.class);
+		memberDao = sqlSessionTemplate.getMapper(MemberDaoInterface.class);
 		MemberVO memberVO = memberDao.findPw(id);
 
 		String result = "";

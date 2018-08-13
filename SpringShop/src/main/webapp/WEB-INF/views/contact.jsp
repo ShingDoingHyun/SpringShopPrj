@@ -37,15 +37,7 @@
     	
     	<p style="margin-top:20px;"><b>서울특별시 종로구 종로2가 9 </b></p>
     	</div>
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+    	    	
     	
     </div>
     <!-- End Content -->
