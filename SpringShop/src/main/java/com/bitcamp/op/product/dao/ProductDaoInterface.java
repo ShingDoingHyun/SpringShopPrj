@@ -19,4 +19,5 @@ public interface ProductDaoInterface {
 			@Param(value="high_price") int high_price);
 	public int selectCount();
 	public ProductDTO selectProduct(int productNo);
+	public int insertProduct(ProductDTO productDto);
 }

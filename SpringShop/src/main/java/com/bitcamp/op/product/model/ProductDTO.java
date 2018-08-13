@@ -1,5 +1,7 @@
 package com.bitcamp.op.product.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductDTO {
 
 	private int productNo;
@@ -10,9 +12,11 @@ public class ProductDTO {
 	private int productPrice;
 	private int productOpt1;
 	private int productOpt2;
-	
-	public ProductDTO() {}
-	
+	private MultipartFile photoFile;
+
+	public ProductDTO() {
+	}
+
 	public ProductDTO(int productNo, String productName, String productDetail, String productImage, String productType,
 			int productPrice, int productOpt1, int productOpt2) {
 		this.productNo = productNo;
@@ -89,15 +93,19 @@ public class ProductDTO {
 		this.productOpt2 = productOpt2;
 	}
 
+	public MultipartFile getPhotoFile() {
+		return photoFile;
+	}
+
+	public void setPhotoFile(MultipartFile photoFile) {
+		this.photoFile = photoFile;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductDTO [productNo=" + productNo + ", productName=" + productName + ", productDetail="
 				+ productDetail + ", productImage=" + productImage + ", productType=" + productType + ", productPrice="
 				+ productPrice + ", productOpt1=" + productOpt1 + ", productOpt2=" + productOpt2 + "]";
 	}
-
-	
-	
-	
 
 }

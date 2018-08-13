@@ -9,31 +9,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectList" resultMap="userResultMap">
 		select * from product
 		<where>
-		<if test="keyword != null">
-			productName like CONCAT('%',#{keyword},'%')
-		</if>
-		<if test="category !=null and category != ''">
-			and productType like #{category}
-		</if>
-		<if test="row_price != 0">
-			and  <![CDATA[  productPrice >= #{row_price} ]]>
-		</if>
-		<if test="high_price != 0">
-			and  <![CDATA[  productPrice <= #{high_price} ]]>
-		</if>
+			<if test="keyword != null">
+				productName like CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="category !=null and category != ''">
+				and productType like #{category}
+			</if>
+			<if test="row_price != 0">
+				and  <![CDATA[  productPrice >= #{row_price} ]]>
+			</if>
+			<if test="high_price != 0">
+				and  <![CDATA[  productPrice <= #{high_price} ]]>
+			</if>
 		</where>
+		order by productNo desc
+
 		limit
 		#{firstRow}, #{endRow}
+
+
+
 	</select>
 
 	<select id="selectCount" resultType="int">
 		select count(*) from product
 	</select>
-	
-	<select id="selectProduct" resultType="com.bitcamp.op.product.model.ProductDTO">
+
+	<select id="selectProduct"
+		resultType="com.bitcamp.op.product.model.ProductDTO">
 		select * from product where productNo= #{productNo}
 	</select>
 
+	<insert id="insertProduct"
+		parameterType="com.bitcamp.op.product.model.ProductDTO">
+		insert into product (productName, productDetail,
+		productImage , productType, productPrice )
+		values (#{productName}, #{productDetail}, #{productImage}, #{productType},
+		#{productPrice} )
+	</insert>
 
-	<resultMap id="userResultMap" type="com.bitcamp.op.product.model.ProductDTO"/>
+
+	<resultMap id="userResultMap"
+		type="com.bitcamp.op.product.model.ProductDTO" />
 </mapper>

@@ -47,14 +47,24 @@ a {
 					&nbsp;&nbsp;<%=cate%></h1>
 				<br> <br> <br>
 				<table>
-
+				<c:set var="count" value="0" /> 
+				<c:set var="num" value="3" />
 					<c:forEach items="${product.productList }" var="productDTO">
+						<c:if test="${count%num==0 }"> <tr> </c:if>
+					
+
+
+
 						<td width=240 height=350><a
 							href="productDetail/${productDTO.productNo}"> <img
 								src='<%= request.getContextPath() %>/uploadFile/productImage/${productDTO.productImage}0.jpg'><br>
 								<p style='text-align: center'>${productDTO.productName}</p>
 								<p style='text-align: center'>${productDTO.productPrice}￦</p>
 						</a></td>
+						
+						<c:if test="${count%num== num-1 }"> </tr> </c:if>
+						
+							<c:set var="count" value="${count+1 }" />
 					</c:forEach>
 
 

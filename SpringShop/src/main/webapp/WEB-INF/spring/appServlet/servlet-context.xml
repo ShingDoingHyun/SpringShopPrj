@@ -59,12 +59,13 @@
 			ref="sqlSessionFactoryBean" />
 	</beans:bean>
 
-
-	<beans:bean id="productListService"
-		class="com.bitcamp.op.product.service.ProductListService" />
-
-	<beans:bean id="productSelectService"
-		class="com.bitcamp.op.product.service.ProductSelectService" />
+	<!-- 파일업로드를 위해 사용 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding">
+			<beans:value>utf-8</beans:value>
+		</beans:property>
+	</beans:bean>
 		
 	<!-- ★메일 발송을 위한 JavaMailSenderImpl 빈 설정 -->
 	<beans:bean id="mailSender"
@@ -83,6 +84,14 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
+	
+	
+	<!-- 상품 리스트 출력 서비스 빈 등록 -->
+	<beans:bean id="productListService" class="com.bitcamp.op.product.service.ProductListService" />
+	<!-- 상품 상세 서비스 빈 등록 -->
+	<beans:bean id="productSelectService" class="com.bitcamp.op.product.service.ProductSelectService" />
+	<!-- 상품 추가 서비스 빈 등록 -->
+	<beans:bean id="productAddService" class="com.bitcamp.op.product.service.ProductAddService" />
 	
 	<!-- ★아이디 찾기 서비스 빈 등록 -->
 	<beans:bean id="memberFindIdService" class="com.bitcamp.op.member.service.MemberFindIdService"/>
