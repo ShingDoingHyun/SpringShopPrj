@@ -32,22 +32,19 @@
     		<p id = "msg"> &nbsp; </p>
     	<% } %>
     	
-    	<form action="/login.do" method="post">
+    	<form method="post">
         	<label for="id"><b>id</b></label>
         	<input type="text" name ="id" class="logintxt">
         	<label for="pw"><b>password</b></label>
         	<input type="password" name="pwd" class="logintxt">
         	<input type="submit" name="login" value="로그인" id="loginBtn">
-        	<input type="button" name="join" value="회원가입" id="joinBtn" onClick="location.href='/member/join.jsp'">
+        	<input type="button" name="join" value="회원가입" id="joinBtn" onClick="location.href='<c:url value="/member/reg"/>'">
         </form>
         	<a href='<c:url value='/member/findMyId'/>' class="bul">아이디 찾기</a>
         	<a href='<c:url value='/member/findMyPw'/>' class="bul">비밀번호 찾기</a>
-        
-    
-    
+                
     </div>
-    
-    
+        
     
     </div>
     <!-- End Content -->

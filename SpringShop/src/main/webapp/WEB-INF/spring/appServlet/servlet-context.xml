@@ -97,7 +97,10 @@
 	<beans:bean id="memberFindIdService" class="com.bitcamp.op.member.service.MemberFindIdService"/>
 	<!-- ★비밀번호 찾기 서비스 빈 등록 -->
 	<beans:bean id="memberFindPwService" class="com.bitcamp.op.member.service.MemberFindPwService"/>
-
+	<!-- ★로그인 서비스 빈 등록 -->
+	<beans:bean id="memberLoginService" class="com.bitcamp.op.member.service.MemberLoginService"/>
+	<!-- ★회원가입 서비스 빈 등록 -->
+	<beans:bean id="memberRegService" class="com.bitcamp.op.member.service.MemberRegService"/>
 
 
 
