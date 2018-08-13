@@ -30,6 +30,7 @@ hs_err_pid*
 ## ignoring target file
 target/
 
+
 ### Web ###
 *.asp
 *.cer
