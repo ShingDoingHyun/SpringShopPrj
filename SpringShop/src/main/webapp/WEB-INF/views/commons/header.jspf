@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.bitcamp.op.member.model.MemberVO" %>
 
+<% MemberVO sessionID = (MemberVO) session.getAttribute("sessionID"); %>
 
 <!-- Header -->
   <div id="header">
@@ -11,10 +12,19 @@
     <!-- Cart -->
     <div id="cart"> <a href="<%= request.getContextPath() %>/product/getAllCart" class="cart-link">Your Shopping Cart</a>
       <div class="cl">&nbsp;</div>
-      <span>Articles: <strong>4</strong></span> &nbsp;&nbsp; <span>Cost: <strong>$250.99</strong></span> </div>
+      <c:choose>
+      	<c:when test="${ sessionID.memberId eq null }">
+      		<span><a href="<c:url value='/member/login'/>" style="color:white; text-decoration:none">로그인 하러 가기</a><strong></span> &nbsp;&nbsp; 	
+      	</c:when>
+      	<c:otherwise>
+      		<span><strong>${ sessionID.memberId } </strong>님</span>
+      		<span>환영 합니다</span> 
+      	</c:otherwise>
+      </c:choose>
+      
+     </div>
     <!-- End Cart -->
     
-    <% MemberVO sessionID = (MemberVO) session.getAttribute("sessionID"); %>
     
     <!-- Navigation -->
     <div id="navigation">
