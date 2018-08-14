@@ -259,7 +259,7 @@ element.style {
     <div id="content">
     <!-- 상단 제품정보 -->
 	<div class="xans-element- xans-product xans-product-detail "><!-- 상품이미지 -->
-	<div class="xans-element- xans-product xans-product-image imgArea "><div class="keyImg"><img src="<%= request.getContextPath() %>/uploadFile/productImage/${productDTO.productImage}0.jpg"/></div>
+	<div class="xans-element- xans-product xans-product-image imgArea "><div class="keyImg"><img src="<%= request.getContextPath() %>/uploadFile/productImage/${productDTO.productImage}"/></div>
 
 	</div>
 	<!-- //상품이미지 -->
@@ -347,7 +347,7 @@ element.style {
 	</span>
 	</td>
 	<td class="right">
-	<span class="quantity_price">${productDTO.productPrice }</span> <span class="mileage ">(<img src="//img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_point.gif"/>  <span class="mileage_price">${productDTO.productPrice/1000 }</span>)</span>
+	<span class="quantity_price">${productDTO.productPrice }</span> <span class="mileage ">(<img src="//img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_point.gif"/>  <span class="mileage_price">${productDTO.productPrice/100 }</span>)</span>
 
 	</td>
 	</tr></tbody>

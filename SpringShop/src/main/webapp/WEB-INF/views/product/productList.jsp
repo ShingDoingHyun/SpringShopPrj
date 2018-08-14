@@ -47,29 +47,41 @@ a {
 					&nbsp;&nbsp;<%=cate%></h1>
 				<br> <br> <br>
 				<table>
-				<c:set var="count" value="0" /> 
-				<c:set var="num" value="3" />
+					<c:set var="count" value="0" />
+					<c:set var="num" value="3" />
 					<c:forEach items="${product.productList }" var="productDTO">
-						<c:if test="${count%num==0 }"> <tr> </c:if>
-					
+						<c:if test="${count%num==0 }">
+							<tr>
+						</c:if>
+
 
 
 
 						<td width=240 height=350><a
 							href="productDetail/${productDTO.productNo}"> <img
-								src='<%= request.getContextPath() %>/uploadFile/productImage/${productDTO.productImage}0.jpg'><br>
+								src='<%= request.getContextPath() %>/uploadFile/productImage/${productDTO.productImage}'><br>
 								<p style='text-align: center'>${productDTO.productName}</p>
 								<p style='text-align: center'>${productDTO.productPrice}￦</p>
 						</a></td>
-						
-						<c:if test="${count%num== num-1 }"> </tr> </c:if>
-						
-							<c:set var="count" value="${count+1 }" />
+
+						<c:if test="${count%num== num-1 }">
+							</tr>
+						</c:if>
+
+						<c:set var="count" value="${count+1 }" />
 					</c:forEach>
 
 
 				</table>
-				<p style='text-align: center'></p>
+   
+        
+				<p style='text-align: center'>
+					<c:forEach begin="1" end="${product.pageTotalCount }" var="i">
+						<a href="<c:url value='/product/productList?page=${ i}&keyword=${param.keyword}&category=${param.category }&row_price=${param.row_price}&high_price=${param.high_price}'/>"
+							style="display: inline;">${ i}</a>
+					</c:forEach>
+					<br>
+				</p>
 				<!-- 이곳에 목록 추가 -->
 
 			</div>

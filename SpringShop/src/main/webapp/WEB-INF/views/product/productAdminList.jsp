@@ -55,7 +55,7 @@ img {
 								<td>
 									<p style='text-align: center'>${productDTO.productPrice}￦</p>
 								</td>
-								<td >수정 / 삭제</td>
+								<td ><a href="/op/product/productUpdate/${productDTO.productNo}">수정</a>  / <a href="/product/productDelete/${productDTO.productNo}">삭제</a></td>
 							</tr>
 						</c:forEach>
 

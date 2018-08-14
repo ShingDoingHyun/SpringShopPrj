@@ -92,6 +92,8 @@
 	<beans:bean id="productSelectService" class="com.bitcamp.op.product.service.ProductSelectService" />
 	<!-- 상품 추가 서비스 빈 등록 -->
 	<beans:bean id="productAddService" class="com.bitcamp.op.product.service.ProductAddService" />
+	<!-- 상품 수정 서비스 빈 등록 -->
+	<beans:bean id="productUpdateService" class="com.bitcamp.op.product.service.ProductUpdateService" />
 	
 	<!-- ★아이디 찾기 서비스 빈 등록 -->
 	<beans:bean id="memberFindIdService" class="com.bitcamp.op.member.service.MemberFindIdService"/>

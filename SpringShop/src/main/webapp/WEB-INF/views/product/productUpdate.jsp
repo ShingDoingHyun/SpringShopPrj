@@ -25,40 +25,49 @@
 					<br> <br> <br>
 					<div class="cl">&nbsp;</div>
 
-					<form style="margin-left: 40px" method="post"
-						enctype="multipart/form-data">
+					<form action="/op/product/productUpdate/" style="margin-left: 40px" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="productNo"
+							value="${productDTO.productNo }">
 						<table>
 							<tr>
 								<td>상품이름 :</td>
-								<td><input type="text" name="productName" size="81"></td>
+								<td><input type="text" name="productName" size="81"
+									value="${productDTO.productName }"></td>
 							</tr>
 							<tr>
 								<td>상품가격 :</td>
-								<td><input type="number" name="productPrice">
+								<td><input type="number" name="productPrice"
+									value="${productDTO.productPrice }">
 								<td>
 							</tr>
 							<tr>
 								<td>상품타입 :</td>
-								<td>남성용 <input type="radio" name="productType" value="men" checked>
-									여성용 <input type="radio" name="productType" value="women">
+								<td>남성용 <input type="radio" name="productType" value="men"
+									${productDTO.productType =='men' ? 'checked' : ''}> 여성용
+									<input type="radio" name="productType" value="women"
+									${productDTO.productType == 'women' ? 'checked' : '' }>
 								<td>
 							</tr>
 							<tr>
 								<td>상품사진 :</td>
-								<td><input type="file" id="upload" name="photoFile">
+								<td><input type="file" id="upload" name="photoFile"
+									value="">
 								<td>
 							</tr>
 							<tr>
 								<td>사진이미지 :</td>
-								<td colspan="2"><div id="holder"></div></td>
+								<td colspan="2"><div id="holder">
+										<img
+											src="<%= request.getContextPath() %>/uploadFile/productImage/${productDTO.productImage}">
+									</div></td>
 							</tr>
 							<tr>
 								<td>상품설명 :</td>
-								<td><textarea rows="10" cols="80" name="productDetail"></textarea></td>
+								<td><textarea rows="10" cols="80" name="productDetail">${productDTO.productDetail }</textarea></td>
 							</tr>
 							<tr>
 								<td colspan="2"><center>
-										<input type="submit" value="상품추가">
+										<input type="submit" value="상품수정">
 									</center></td>
 							</tr>
 						</table>
@@ -104,7 +113,7 @@
 			img.src = event.target.result;
 			// note: no onload required since we've got the dataurl...I think! :)
 			img.width = 300;
-		
+
 			holder.innerHTML = '';
 			holder.appendChild(img);
 		};

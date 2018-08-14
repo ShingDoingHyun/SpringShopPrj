@@ -17,7 +17,7 @@ public class ProductListService {
 	SqlSessionTemplate template;
 	
 	private ProductDaoInterface productDao;
-	private static final int PRODUCT_COUNT_PER_PAGE = 10;
+	private static final int PRODUCT_COUNT_PER_PAGE = 2;
 	
 	public ProductList getProductList(int pageNumber, String keyword, String category, int row_price, int high_price) {
 		productDao = template.getMapper(ProductDaoInterface.class);
@@ -26,20 +26,20 @@ public class ProductListService {
 		
 		int currentPageNumber = pageNumber > 0 ? pageNumber : 1; 
 		
-		int productTotalCount = productDao.selectCount();
+		int productTotalCount = productDao.selectCount(keyword, category, row_price, high_price);
 		List<ProductDTO> productList = null;
 		
 		int firstRow = 0;
 		int endRow = 0;
 		if (productTotalCount > 0) {
 			firstRow = (pageNumber - 1) * PRODUCT_COUNT_PER_PAGE;
-			endRow = firstRow + PRODUCT_COUNT_PER_PAGE - 1;
+			endRow = PRODUCT_COUNT_PER_PAGE;
 			productList = productDao.selectList(firstRow, endRow, keyword, category, row_price, high_price);
 		} else {
 			currentPageNumber = 0;
 			productList = Collections.emptyList();
 		}
-		
+		System.out.println(firstRow+" "+endRow+ "출력" + currentPageNumber + PRODUCT_COUNT_PER_PAGE +"?"+productTotalCount);
 		return new ProductList(productList, productTotalCount, currentPageNumber, PRODUCT_COUNT_PER_PAGE,
 				firstRow, endRow);
 		
