@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bitcamp.op.member.model.MemberVO;
 import com.bitcamp.op.member.service.MemberFindIdService;
 
 @Controller

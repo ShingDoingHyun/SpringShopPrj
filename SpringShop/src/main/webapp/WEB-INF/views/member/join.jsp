@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="../css/style.css" type="text/css"	media="all" />
 <link rel="stylesheet" href="../css/member.css" type="text/css"	media="all" />
-
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
 #confirmCheck{ visibility:hidden;}
 
@@ -39,7 +39,7 @@ th{
 			<div id="content">
 				<div class="JoinPage">
 					<br>
-					<h1>기본정보</h1>
+					<h1>회원가입</h1>
 					<br>
 					<br>
 					<p class="required ">
@@ -47,7 +47,7 @@ th{
 					</p>
 					<br>
 					<div class="boardWrite">
-						<form method="post">
+						<form method="post" enctype="multipart/form-data">
 							<table summary="">
 								<tbody>
 									<tr>
@@ -112,9 +112,11 @@ th{
 
 									<tr class="">
 										<th scope="row">주소 <img	src="<c:url value='/css/images/ico_required.gif'/>" class="" alt="필수" /></th>
-										<td><input id="postcode1" name="postCode"	class="inputTypeText" placeholder="" maxlength="14" value="" type="text" /> 우편번호<br />
-											<input id="addr1" name="addr1"	class="inputTypeText" placeholder="ex) 시/구/군/동"  type="text" />기본주소<br/>
-											<input id="addr2" name="addr2"	class="inputTypeText" placeholder="ex) 나머지주소"  type="text" />나머지주소</td>
+										<td><input id="postcode" name="postCode"	class="inputTypeText" placeholder="우편번호" maxlength="14" value="" type="text"/>우편번호
+											<input type="button" onclick="searChpostcode()" value="우편번호찾기" /><br/>
+											<input id="address" name="addr1"	class="inputTypeText" placeholder="주소"  type="text" />도로명주소<br/>
+											<input id="address2" name="addr2"	class="inputTypeText" placeholder="상세주소"  type="text" />지명주소</td>
+											<span id="guide" style="color:#999"></span>	
 									</tr>
 									<tr class="">
 										<th scope="row">일반전화 <img src="<c:url value='/css/images/ico_required.gif'/>" class="displaynone" alt="필수" /></th>
@@ -187,11 +189,16 @@ th{
 												<option value="etc">직접입력</option>
 										</select> <span id="emailMsg"></span></td>
 									</tr>
-									<tr class="">
+										<tr class="">
 										<th scope="row">이메일 수신여부 <img	src="<c:url value='/css/images/ico_required.gif'/>" alt="필수" /></th>
 										<td><label><input id="is_news_mail0" name="is_news_mail"  value="T" type="checkbox" />동의함</label>
 										<p>쇼핑몰에서 제공하는 유익한 이벤트 소식을 이메일로 받으실 수 있습니다.</p></td>
 									</tr>
+									<tr class="">
+										<th scope="row">프로필사진 </th>
+										<td><input id="image" name="photoFile" type="file" />
+									</tr>
+									
 								</tbody>
 							</table>
 							<input type="submit" name="join" value="회원가입" id="loginBtn">
@@ -272,7 +279,48 @@ th{
 				
 			}
 		}
-				
+					
+		  function searChpostcode() {
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+		                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+		                var fullAddr = ''; // 최종 주소 변수
+		                var extraAddr = ''; // 조합형 주소 변수
+
+		                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+		                    fullAddr = data.roadAddress;
+
+		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+		                    fullAddr = data.jibunAddress;
+		                }
+
+		                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+		                if(data.userSelectedType === 'R'){
+		                    //법정동명이 있을 경우 추가한다.
+		                    if(data.bname !== ''){
+		                        extraAddr += data.bname;
+		                    }
+		                    // 건물명이 있을 경우 추가한다.
+		                    if(data.buildingName !== ''){
+		                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		                    }
+		                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+		                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+		                }
+
+		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+		                document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+		                document.getElementById('address').value = fullAddr;
+
+		                // 커서를 상세주소 필드로 이동한다.
+		                document.getElementById('address2').focus();
+		            }
+		        }).open();
+		    }
 		
 	</script>
 

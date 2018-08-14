@@ -18,6 +18,8 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/css/**" location="/resources/css/" />
+	
+	<!-- 사진경로 폴더 등록 -->
 	<resources mapping="/uploadFile/**" location="/uploadFile/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
@@ -30,6 +32,14 @@
 
 	<context:component-scan
 		base-package="com.bitcamp.op" />
+
+	<!-- 파일업로드 처리를 위한 multipartResolver bean 등록 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding">
+			<beans:value>utf-8</beans:value>
+		</beans:property>
+	</beans:bean>
 
 
 	<!-- db연동을 위한 datasource빈 등록 : jdbcTemplate에 주입, mybatis 설정 -->
@@ -92,7 +102,9 @@
 	<beans:bean id="memberLoginService" class="com.bitcamp.op.member.service.MemberLoginService"/>
 	<!-- ★회원가입 서비스 빈 등록 -->
 	<beans:bean id="memberRegService" class="com.bitcamp.op.member.service.MemberRegService"/>
-
-
+	<!-- ★회원정보수정 서비스 빈 등록 -->
+	<beans:bean id="memberModifyService" class="com.bitcamp.op.member.service.MemberModifyService"/>
+	<!-- ★비밀번호 암호화 빈 등록  -->
+	<beans:bean id="messageDigest" class="com.bitcamp.op.security.MessageDigest.Sha256"/>
 
 </beans:beans>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bitcamp.op.member.controller.LoginRequest;
 import com.bitcamp.op.member.dao.MemberDaoInterface;
 import com.bitcamp.op.member.model.MemberVO;
+import com.bitcamp.op.security.MessageDigest.Sha256;
 
 
 public class MemberLoginService {
@@ -18,24 +19,22 @@ public class MemberLoginService {
 	@Autowired
 	SqlSessionTemplate template;
 	
+	@Autowired
+	Sha256 sha256;
+	
 	private MemberDaoInterface memberDao;
 	
 	
 	public boolean login(HttpServletRequest request, LoginRequest loginRequest) throws Exception {
 		
-		boolean result=false;
 		HttpSession session = request.getSession(false);
 		memberDao = template.getMapper((MemberDaoInterface.class));
 		
 		MemberVO memberVo = memberDao.selectById(loginRequest.getId());
 		
-		// 테스트 코드
-		System.out.println("LoginService MemberVo.getPwd(): " +memberVo.getMemberPwd());
-		System.out.println("loginRequest.getPwd() : "+loginRequest.getPwd());
-		
 		
 		// 로그인 성공시 세션 성립
-		if(memberVo != null && memberVo.isMatchPassword(loginRequest.getPwd())) {
+		if(memberVo != null && memberVo.isMatchPassword(sha256.encrypt(loginRequest.getPwd()))) {
 			
 			session.setAttribute("sessionID", memberVo);
 			

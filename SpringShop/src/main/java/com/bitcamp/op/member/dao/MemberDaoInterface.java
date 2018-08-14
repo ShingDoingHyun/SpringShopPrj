@@ -16,6 +16,9 @@ public interface MemberDaoInterface {
 	
 	// 회원가입
 	public int insertMember(MemberVO memberVo);
+	
+	// 회원정보수정
+	public int updateMember(MemberVO memberVo);
 
 
 }
