@@ -69,13 +69,7 @@
 			ref="sqlSessionFactoryBean" />
 	</beans:bean>
 
-
-	<beans:bean id="productListService"
-		class="com.bitcamp.op.product.service.ProductListService" />
-
-	<beans:bean id="productSelectService"
-		class="com.bitcamp.op.product.service.ProductSelectService" />
-		
+			
 	<!-- ★메일 발송을 위한 JavaMailSenderImpl 빈 설정 -->
 	<beans:bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -94,6 +88,16 @@
 		</beans:property>
 	</beans:bean>
 	
+	
+	<!-- 상품 리스트 출력 서비스 빈 등록 -->
+	<beans:bean id="productListService" class="com.bitcamp.op.product.service.ProductListService" />
+	<!-- 상품 상세 서비스 빈 등록 -->
+	<beans:bean id="productSelectService" class="com.bitcamp.op.product.service.ProductSelectService" />
+	<!-- 상품 추가 서비스 빈 등록 -->
+	<beans:bean id="productAddService" class="com.bitcamp.op.product.service.ProductAddService" />
+	<!-- 상품 수정 서비스 빈 등록 -->
+	<beans:bean id="productUpdateService" class="com.bitcamp.op.product.service.ProductUpdateService" />
+	
 	<!-- ★아이디 찾기 서비스 빈 등록 -->
 	<beans:bean id="memberFindIdService" class="com.bitcamp.op.member.service.MemberFindIdService"/>
 	<!-- ★비밀번호 찾기 서비스 빈 등록 -->
@@ -102,9 +106,22 @@
 	<beans:bean id="memberLoginService" class="com.bitcamp.op.member.service.MemberLoginService"/>
 	<!-- ★회원가입 서비스 빈 등록 -->
 	<beans:bean id="memberRegService" class="com.bitcamp.op.member.service.MemberRegService"/>
+
 	<!-- ★회원정보수정 서비스 빈 등록 -->
 	<beans:bean id="memberModifyService" class="com.bitcamp.op.member.service.MemberModifyService"/>
 	<!-- ★비밀번호 암호화 빈 등록  -->
 	<beans:bean id="messageDigest" class="com.bitcamp.op.security.MessageDigest.Sha256"/>
+
+	
+    <!-- 카트 삭제 서비스 빈 등록 -->
+	<beans:bean id="deleteAllCartService"
+		class="com.bitcamp.op.cart.service.DeleteAllCartService" />
+    <!-- 카트 삽입 서비스 빈 등록 -->
+	<beans:bean id="insertCartService"
+		class="com.bitcamp.op.cart.service.InsertCartService" />
+    <!-- 카트 보기 서비스 빈 등록 -->
+	<beans:bean id="getAllCartService"
+		class="com.bitcamp.op.cart.service.GetAllCartService" />
+
 
 </beans:beans>
