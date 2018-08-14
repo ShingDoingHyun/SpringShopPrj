@@ -386,8 +386,7 @@ element.style {
 	<div class="xans-element- xans-product xans-product-action "><div class="btnArea">
 	<ul>
 	<a class="btn1 " onclick="order();">BUY</a>
-	<a href="./addCart.cart?productImg="
-				class="btn2 " onclick="product_submit(2, '/exec/front/order/basket/', this)">CART</a>
+	<a href="javascript:cartFunction();" class="btn2 ">CART</a>
 	<a href="#none" onclick="add_wishlist_nologin('/member/login.html');" class="btn3 ">WISH</a>
 	</ul>
 	</div>
@@ -474,6 +473,14 @@ element.style {
 
 	$("#total").text( addComma($(this).val()*${productDTO.productPrice } ));
 });
+ 
+function cartFunction(){
+	 
+	 window.location.href="<%=request.getContextPath()%>/product/insertCart?img=${productDTO.productImage}&one=${productDTO.productPrice}&name=${productDTO.productName}&price="
+			 +$("#total").text()
+	       +'&amount='
+		 +$("#quantity").val();
+ }
 <%--
 function order(){
 	window.location.href="/productOrder?productNo="+<%=productDTO.getProductNo()%>+"&quantity="+$('#quantity').val();

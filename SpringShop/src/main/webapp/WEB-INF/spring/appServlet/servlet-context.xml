@@ -103,6 +103,16 @@
 	<beans:bean id="memberLoginService" class="com.bitcamp.op.member.service.MemberLoginService"/>
 	<!-- ★회원가입 서비스 빈 등록 -->
 	<beans:bean id="memberRegService" class="com.bitcamp.op.member.service.MemberRegService"/>
+	
+    <!-- 카트 삭제 서비스 빈 등록 -->
+	<beans:bean id="deleteAllCartService"
+		class="com.bitcamp.op.cart.service.DeleteAllCartService" />
+    <!-- 카트 삽입 서비스 빈 등록 -->
+	<beans:bean id="insertCartService"
+		class="com.bitcamp.op.cart.service.InsertCartService" />
+    <!-- 카트 보기 서비스 빈 등록 -->
+	<beans:bean id="getAllCartService"
+		class="com.bitcamp.op.cart.service.GetAllCartService" />
 
 
 
