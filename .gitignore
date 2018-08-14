@@ -40,5 +40,9 @@ setting/
 *.rss
 *.xhtml
 
+# Eclipse artifacts, including WTP generated manifests
+.classpath
+.project
+spring-*/src/main/java/META-INF/MANIFEST.MF
 
 # End of https://www.gitignore.io/api/web,java,java-web
